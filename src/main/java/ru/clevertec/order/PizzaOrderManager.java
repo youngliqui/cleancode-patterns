@@ -1,7 +1,5 @@
 package ru.clevertec.order;
 
-import ru.clevertec.service.PizzaPreparationService;
-import ru.clevertec.service.PizzaPreparationServiceImpl;
 import ru.clevertec.command.Command;
 import ru.clevertec.command.PreparePizzaCommand;
 import ru.clevertec.config.PizzeriaConfig;
@@ -10,6 +8,9 @@ import ru.clevertec.decorator.DoubleCheeseDecorator;
 import ru.clevertec.model.PizzaOrderRequest;
 import ru.clevertec.observer.NotificationService;
 import ru.clevertec.observer.OrderNotificationService;
+import ru.clevertec.proxy.PizzaPreparationServiceProxy;
+import ru.clevertec.service.PizzaPreparationService;
+import ru.clevertec.service.PizzaPreparationServiceImpl;
 import ru.clevertec.strategy.HawaiianStrategy;
 import ru.clevertec.strategy.MargaritaStrategy;
 import ru.clevertec.strategy.PepperoniStrategy;
@@ -55,11 +56,13 @@ public class PizzaOrderManager implements OrderManager {
     }
 
     private Command getPrepareCommand(boolean withCheeseBoard, boolean withDoubleCheese, PizzaOrderRequest order) {
-        PizzaPreparationService preparationService = new PizzaPreparationServiceImpl(List.of(
-                new HawaiianStrategy(),
-                new MargaritaStrategy(),
-                new PepperoniStrategy()
-        ));
+        PizzaPreparationService preparationService = new PizzaPreparationServiceProxy(
+                new PizzaPreparationServiceImpl(List.of(
+                        new HawaiianStrategy(),
+                        new MargaritaStrategy(),
+                        new PepperoniStrategy()
+                ))
+        );
 
         if (withCheeseBoard) {
             preparationService = new CheeseBoardDecorator(preparationService);

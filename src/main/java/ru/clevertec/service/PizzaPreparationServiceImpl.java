@@ -5,6 +5,7 @@ import ru.clevertec.chain_of_command.*;
 import ru.clevertec.exception.PreparationException;
 import ru.clevertec.model.Pizza;
 import ru.clevertec.model.PizzaOrderRequest;
+import ru.clevertec.proxy.Log;
 import ru.clevertec.strategy.PizzaStrategy;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class PizzaPreparationServiceImpl implements PizzaPreparationService {
         this.pizzaStrategies = pizzaStrategies;
     }
 
+    @Log
     public Pizza preparePizza(PizzaOrderRequest pizzaOrder) {
         String pizzaType = pizzaOrder.getType();
         PizzaStrategy pizzaStrategy = findStrategy(pizzaType);
@@ -25,9 +27,7 @@ public class PizzaPreparationServiceImpl implements PizzaPreparationService {
         PizzaHandler chain = createChain(pizzaStrategy.getIngredients());
 
         try {
-
             chain.handle(pizza);
-
         } catch (InterruptedException e) {
             throw new PreparationException("Error with the pizza cooking chain: " + e.getMessage());
         }
