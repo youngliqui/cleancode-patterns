@@ -7,7 +7,7 @@ import ru.clevertec.observer.OrderNotificationService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class PizzaShopApp {
+public class PizzeriaApp {
     public static void main(String[] args) {
         OrderNotificationService notifier = new OrderNotificationService();
         PizzeriaService facade = new PizzeriaService(notifier);

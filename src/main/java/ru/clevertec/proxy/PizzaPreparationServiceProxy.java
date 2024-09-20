@@ -15,14 +15,15 @@ public class PizzaPreparationServiceProxy implements PizzaPreparationService {
     @Override
     public Pizza preparePizza(PizzaOrderRequest pizzaOrder) {
         String methodName = "preparePizza";
+        String className = realService.getClass().getName();
         Pizza pizza;
 
         if (isMethodAnnotatedWithLog(realService.getClass(), methodName)) {
-            actionBefore(methodName);
+            actionBefore(className, methodName);
 
             pizza = realService.preparePizza(pizzaOrder);
 
-            actionAfter(methodName);
+            actionAfter(className, methodName);
         } else {
             pizza = realService.preparePizza(pizzaOrder);
         }
@@ -30,12 +31,12 @@ public class PizzaPreparationServiceProxy implements PizzaPreparationService {
         return pizza;
     }
 
-    private void actionBefore(String methodName) {
-        System.out.println("+++ Method: " + methodName + " is started");
+    private void actionBefore(String className, String methodName) {
+        System.out.println("+++ Class: " + className + ", Method: " + methodName + " is started");
     }
 
-    private void actionAfter(String methodName) {
-        System.out.println("--- Method: " + methodName + " is executed");
+    private void actionAfter(String className, String methodName) {
+        System.out.println("--- Class: " + className + ", Method: " + methodName + " is executed");
     }
 
     private boolean isMethodAnnotatedWithLog(Class<?> realServiceClass, String methodName) {
