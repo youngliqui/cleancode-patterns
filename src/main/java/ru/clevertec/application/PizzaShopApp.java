@@ -1,4 +1,4 @@
-package ru.clevertec;
+package ru.clevertec.application;
 
 import ru.clevertec.facade.PizzeriaService;
 import ru.clevertec.observer.Client;

@@ -1,4 +1,4 @@
-package ru.clevertec;
+package ru.clevertec.service;
 
 import ru.clevertec.model.Pizza;
 import ru.clevertec.model.PizzaOrderRequest;

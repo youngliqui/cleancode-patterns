@@ -1,4 +1,4 @@
-package ru.clevertec;
+package ru.clevertec.service;
 
 import lombok.NoArgsConstructor;
 import ru.clevertec.chain_of_command.*;

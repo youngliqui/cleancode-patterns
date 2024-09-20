@@ -1,6 +1,6 @@
 package ru.clevertec.decorator;
 
-import ru.clevertec.PizzaPreparationService;
+import ru.clevertec.service.PizzaPreparationService;
 import ru.clevertec.model.Pizza;
 import ru.clevertec.model.PizzaOrderRequest;
 

@@ -1,7 +1,7 @@
 package ru.clevertec.facade;
 
-import ru.clevertec.OrderManager;
-import ru.clevertec.PizzaOrderManager;
+import ru.clevertec.order.OrderManager;
+import ru.clevertec.order.PizzaOrderManager;
 import ru.clevertec.observer.OrderNotificationService;
 
 public class PizzeriaService {
